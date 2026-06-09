@@ -2,7 +2,7 @@
 
 Statische Website für **EKY Media**, Web- & KI-Agentur in Würzburg & Regensburg: individuelle Websites, KI-Assistenten, Automatisierung und lokale Sichtbarkeit.
 
-- **Design:** Navy (`#0B1426`) + Gold (`#C8A14A`) + Off-White (`#F6F8FC`) – eigenes EKY-Media-Designsystem
+- **Design:** Navy (`#0B1426`) + Gold (`#C8A14A`) + Off-White (`#F6F8FC`) – abgestimmt auf das EKY-Media-Logo (`assets/logo/eky-logo-original.jpeg`); die Wortmarke im Header/Footer ist als HTML/CSS umgesetzt (Serife, E navy / KY gold)
 - **Technik:** HTML, CSS, Vanilla JavaScript – kein Framework, kein Build-Prozess
 - **Hosting:** direkt auf GitHub Pages deploybar
 - **Fonts:** ausschließlich System-Font-Stacks (keine Google Fonts, keine CDNs)
@@ -25,7 +25,7 @@ Statische Website für **EKY Media**, Web- & KI-Agentur in Würzburg & Regensbur
 ├── assets/
 │   ├── img/                SVG-Platzhalter (Navy/Gold) für Hero, Projekte, Team
 │   ├── icons/              Favicon (EKY-Monogramm)
-│   └── logo/               Temporäres Textlogo/Monogramm (SVG)
+│   └── logo/               Original-Logo (JPEG) + SVG-Nachbau der Wortmarke
 ├── css/styles.css          Design-System (Design-Tokens, kommentiert)
 └── js/main.js              Drawer-Navigation, Footer-Accordions, Formular, A11y-Widget
 ```

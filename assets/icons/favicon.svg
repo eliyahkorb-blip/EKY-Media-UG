@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <!-- EKY-Monogramm (temporär, bis finales Logo vorliegt) -->
+  <!-- Favicon nach Logo-Vorlage: Navy-Fläche, Serifen-"E" in Gold -->
   <rect width="64" height="64" rx="14" fill="#0B1426"/>
-  <path d="M18 17h28v7H26v7.5h17v7H26V46h20v7H18V17z" fill="#C8A14A"/>
+  <text x="32" y="46" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="40" font-weight="600" fill="#C8A14A">E</text>
 </svg>
