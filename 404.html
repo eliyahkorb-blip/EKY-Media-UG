@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Seite nicht gefunden – EKY Media</title>
+  <meta name="robots" content="noindex">
+
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <meta name="theme-color" content="#181510">
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script>
+    (function () {
+      try {
+        var s = JSON.parse(localStorage.getItem("eky-a11y")) || {};
+        var r = document.documentElement;
+        if (s.fontScale) r.style.setProperty("--font-scale", s.fontScale);
+        if (s.contrast) r.classList.add("a11y-contrast");
+        if (s.noMotion) r.classList.add("a11y-no-motion");
+      } catch (e) {}
+    })();
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="/" aria-label="EKY Media – zur Startseite">
+        <span class="brand__mark" aria-hidden="true">EKY</span>
+        <span>EKY<span class="brand__suffix"> Media</span></span>
+      </a>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container error-page">
+      <div>
+        <p class="error-code" aria-hidden="true">404</p>
+        <h1>Diese Seite gibt es nicht – Ihre Anfragen sollte es aber geben.</h1>
+        <p class="lead" style="margin-inline:auto;">Die aufgerufene Seite wurde nicht gefunden. Zurück zur Startseite – dort finden Sie alles über Websites, KI-Systeme und digitale Sichtbarkeit.</p>
+        <p style="margin-top:28px;">
+          <a class="btn btn--primary" href="/">Zur Startseite</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-meta" style="padding-top:0;">
+        <p>© 2026 EKY Media. Alle Rechte vorbehalten.</p>
+        <p><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

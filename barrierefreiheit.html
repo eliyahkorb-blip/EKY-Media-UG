@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Erklärung zur Barrierefreiheit – EKY Media</title>
+  <meta name="description" content="Erklärung zur Barrierefreiheit der Website von EKY Media – Zielstandard WCAG 2.2 AA, Stand der Vereinbarkeit und Feedback-Kontakt.">
+  <link rel="canonical" href="https://ekymedia.de/barrierefreiheit.html">
+  <meta name="robots" content="noindex, follow">
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <meta name="theme-color" content="#181510">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script>
+    (function () {
+      try {
+        var s = JSON.parse(localStorage.getItem("eky-a11y")) || {};
+        var r = document.documentElement;
+        if (s.fontScale) r.style.setProperty("--font-scale", s.fontScale);
+        if (s.contrast) r.classList.add("a11y-contrast");
+        if (s.noMotion) r.classList.add("a11y-no-motion");
+      } catch (e) {}
+    })();
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html" aria-label="EKY Media – zur Startseite">
+        <span class="brand__mark" aria-hidden="true">EKY</span>
+        <span>EKY<span class="brand__suffix"> Media</span></span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Menü öffnen">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+
+      <nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">
+        <ul class="main-nav__list">
+          <li><a class="main-nav__link" href="index.html#leistungen">Leistungen</a></li>
+          <li><a class="main-nav__link" href="index.html#arbeiten">Arbeiten</a></li>
+          <li><a class="main-nav__link" href="index.html#branchen">Branchen</a></li>
+          <li><a class="main-nav__link" href="index.html#prozess">Prozess</a></li>
+          <li><a class="main-nav__link" href="index.html#ueber-eky">Über EKY</a></li>
+          <li><a class="main-nav__link" href="index.html#kontakt">Kontakt</a></li>
+        </ul>
+        <a class="btn btn--primary btn--sm" href="index.html#kontakt">Kostenfreie Analyse</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Zugänglichkeit</p>
+        <h1>Erklärung zur Barrierefreiheit</h1>
+      </div>
+    </div>
+
+    <div class="container legal-content">
+
+      <p>EKY Media ist bemüht, die eigene Website <a href="https://ekymedia.de/">ekymedia.de</a> für möglichst alle Menschen zugänglich zu gestalten. Zielstandard ist die Konformität mit den <strong>Web Content Accessibility Guidelines (WCAG) 2.2, Stufe AA</strong>.</p>
+
+      <h2>Stand der Vereinbarkeit</h2>
+      <p>Diese Website ist nach unserer Selbstbewertung <strong>weitgehend vereinbar</strong> mit den WCAG 2.2 auf Stufe AA. Umgesetzt sind unter anderem:</p>
+      <ul>
+        <li>semantisches HTML mit klaren Landmarken (Header, Navigation, Hauptinhalt, Footer)</li>
+        <li>vollständige Bedienbarkeit per Tastatur mit sichtbarem Fokus</li>
+        <li>Skip-Link zum direkten Sprung auf den Inhalt</li>
+        <li>ausreichende Farbkontraste und skalierbare Schriftgrößen</li>
+        <li>Alternativtexte für Bilder und Platzhaltergrafiken</li>
+        <li>zugängliche Formulare mit verbundenen Beschriftungen und verständlichen Fehlermeldungen</li>
+        <li>Unterstützung von „Bewegung reduzieren“ (Systemeinstellung und Website-Widget)</li>
+        <li>Einstellungs-Widget für Schriftgröße, Kontrastmodus und reduzierte Bewegung</li>
+      </ul>
+
+      <h2>Bekannte Einschränkungen</h2>
+      <p>Trotz sorgfältiger Umsetzung können einzelne Inhalte noch nicht vollständig barrierefrei sein:</p>
+      <ul>
+        <li>Platzhaltergrafiken werden derzeit durch finale Bildinhalte ersetzt; Alternativtexte werden dabei laufend gepflegt.</li>
+        <li>Extern verlinkte Dienste (z. B. WhatsApp, Social-Media-Plattformen, Terminbuchung) liegen außerhalb unseres Einflussbereichs und erfüllen den Zielstandard möglicherweise nicht vollständig.</li>
+        <li>Eine vollständige externe Prüfung nach WCAG 2.2 AA steht noch aus. <!-- TODO: nach erfolgter Prüfung aktualisieren --></li>
+      </ul>
+
+      <h2>Feedback und Kontakt</h2>
+      <p>Sind Ihnen Barrieren auf dieser Website aufgefallen? Wir freuen uns über Ihren Hinweis und bemühen uns um zeitnahe Behebung:</p>
+      <p>E-Mail: <a href="mailto:info@ekymedia.de">info@ekymedia.de</a><br>
+      Telefon: <a href="tel:+4916092647414">+49 160 92647414</a></p>
+
+      <h2>Durchsetzungsverfahren</h2>
+      <p>Sollten Sie auf Mitteilungen oder Anfragen zur Barrierefreiheit keine zufriedenstellende Antwort erhalten, können Sie sich – je nach Anwendbarkeit der gesetzlichen Regelungen (z. B. Barrierefreiheitsstärkungsgesetz) – an die zuständige Marktüberwachungs- bzw. Durchsetzungsstelle wenden. <em>[Zuständige Stelle und Kontaktdaten vor Veröffentlichung prüfen und ergänzen.]</em></p>
+      <!-- TODO: Zuständige Durchsetzungs-/Schlichtungsstelle prüfen und konkret
+           benennen, sobald die rechtliche Einordnung (BFSG-Anwendbarkeit) geklärt ist. -->
+
+      <h2>Erstellung dieser Erklärung</h2>
+      <p>Diese Erklärung beruht auf einer Selbstbewertung und wird aktualisiert, sobald sich der Stand der Barrierefreiheit wesentlich ändert.</p>
+
+      <p>Stand: Juni 2026</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <span class="brand__mark" aria-hidden="true">EKY</span>
+            <span>EKY<span class="brand__suffix"> Media</span></span>
+          </a>
+          <p>Digitale Systeme, die aus Besuchern Kunden machen – Websites, KI und Sichtbarkeit aus einer Hand.</p>
+        </div>
+
+        <nav class="footer-col" aria-label="Footer-Navigation">
+          <h2>Navigation</h2>
+          <ul>
+            <li><a href="index.html#leistungen">Leistungen</a></li>
+            <li><a href="index.html#arbeiten">Arbeiten</a></li>
+            <li><a href="index.html#branchen">Branchen</a></li>
+            <li><a href="index.html#prozess">Prozess</a></li>
+            <li><a href="index.html#ueber-eky">Über EKY</a></li>
+            <li><a href="index.html#kontakt">Kontakt</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-col">
+          <h2>Kontakt</h2>
+          <ul>
+            <li><a href="mailto:info@ekymedia.de">info@ekymedia.de</a></li>
+            <li><a href="tel:+4916092647414">+49 160 92647414</a></li>
+            <li>Würzburg &amp; Regensburg, Bayern</li>
+          </ul>
+        </div>
+
+        <nav class="footer-col" aria-label="Rechtliches">
+          <h2>Rechtliches</h2>
+          <ul>
+            <li><a href="impressum.html">Impressum</a></li>
+            <li><a href="datenschutz.html">Datenschutz</a></li>
+            <li><a href="agb.html">AGB</a></li>
+            <li><a href="barrierefreiheit.html">Barrierefreiheit</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer-meta">
+        <p>© 2026 EKY Media. Alle Rechte vorbehalten.</p>
+        <p>Digitalagentur in Würzburg &amp; Regensburg, Bayern</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

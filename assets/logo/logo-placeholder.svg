@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="64" viewBox="0 0 320 64" role="img" aria-label="EKY Media Logo">
+  <!-- Platzhalter-Logo: Bei finalem Branding durch echtes Logo ersetzen. -->
+  <rect x="2" y="10" width="44" height="44" rx="10" fill="#1d1b18"/>
+  <path d="M14 24h20v4.5H19.5v5.25H32v4.5H19.5v5.25H34V48H14V24z" fill="#cfae6a"/>
+  <text x="58" y="42" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="0.5" fill="#1d1b18">EKY<tspan font-weight="400" fill="#57534b"> Media</tspan></text>
+</svg>
