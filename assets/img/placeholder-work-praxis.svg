@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="Platzhalter: Arbeitsprobe – Zahnarztpraxis">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="Platzhalter: Beispielprojekt – Zahnarztpraxis">
   <!-- Platzhalterbild: durch echtes Foto/Mockup ersetzen (gleicher Dateiname oder Pfad im HTML anpassen). -->
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#23262b"/>
-      <stop offset="1" stop-color="#3a4350"/>
+      <stop offset="0" stop-color="#101A33"/>
+      <stop offset="1" stop-color="#1e3260"/>
     </linearGradient>
   </defs>
   <rect width="1200" height="900" fill="url(#g)"/>
-  <rect x="40" y="40" width="1120" height="820" rx="24" fill="none" stroke="#cfae6a" stroke-opacity="0.35" stroke-width="2" stroke-dasharray="10 10"/>
-  <text x="50%" y="47%" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif" font-size="44" font-weight="700" fill="#f4f1ea" fill-opacity="0.9">Arbeitsprobe</text>
-  <text x="50%" y="54%" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif" font-size="28" fill="#cfae6a">Zahnarztpraxis</text>
+  <rect x="40" y="40" width="1120" height="820" rx="24" fill="none" stroke="#C8A14A" stroke-opacity="0.4" stroke-width="2" stroke-dasharray="10 10"/>
+  <text x="50%" y="47%" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif" font-size="44" font-weight="700" fill="#F6F8FC" fill-opacity="0.92">Beispielprojekt</text>
+  <text x="50%" y="54%" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif" font-size="28" fill="#C8A14A">Zahnarztpraxis</text>
 </svg>

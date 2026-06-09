@@ -8,17 +8,18 @@
   <meta name="robots" content="noindex">
 
   <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-  <meta name="theme-color" content="#181510">
+  <meta name="theme-color" content="#0B1426">
   <link rel="stylesheet" href="/css/styles.css">
 
   <script>
     (function () {
       try {
         var s = JSON.parse(localStorage.getItem("eky-a11y")) || {};
-        var r = document.documentElement;
-        if (s.fontScale) r.style.setProperty("--font-scale", s.fontScale);
-        if (s.contrast) r.classList.add("a11y-contrast");
-        if (s.noMotion) r.classList.add("a11y-no-motion");
+        var c = document.documentElement.classList;
+        if (s.fs === 1) c.add("fs-md");
+        if (s.fs === 2) c.add("fs-lg");
+        if (s.hc) c.add("hc");
+        if (s.rm) c.add("reduce-motion");
       } catch (e) {}
     })();
   </script>
@@ -30,9 +31,14 @@
   <header class="site-header">
     <div class="container site-header__inner">
       <a class="brand" href="/" aria-label="EKY Media – zur Startseite">
-        <span class="brand__mark" aria-hidden="true">EKY</span>
-        <span>EKY<span class="brand__suffix"> Media</span></span>
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 3h14v4h-9v3h8v4h-8v3h9v4H5V3z" fill="#C8A14A"/></svg>
+        </span>
+        <span class="brand__name">EKY<span> MEDIA</span></span>
       </a>
+      <div class="header-cta">
+        <a class="btn btn--gold btn--sm" href="/#kontakt">Kostenfreie Analyse</a>
+      </div>
     </div>
   </header>
 
@@ -40,10 +46,10 @@
     <div class="container error-page">
       <div>
         <p class="error-code" aria-hidden="true">404</p>
-        <h1>Diese Seite gibt es nicht – Ihre Anfragen sollte es aber geben.</h1>
-        <p class="lead" style="margin-inline:auto;">Die aufgerufene Seite wurde nicht gefunden. Zurück zur Startseite – dort finden Sie alles über Websites, KI-Systeme und digitale Sichtbarkeit.</p>
-        <p style="margin-top:28px;">
-          <a class="btn btn--primary" href="/">Zur Startseite</a>
+        <h1>Diese Seite gibt es nicht.</h1>
+        <p class="lead" style="margin-inline:auto;">Die aufgerufene Adresse wurde nicht gefunden. Auf der Startseite finden Sie alles zu Websites, KI und lokaler Sichtbarkeit.</p>
+        <p style="margin-top:26px;">
+          <a class="btn btn--navy" href="/">Zur Startseite</a>
         </p>
       </div>
     </div>

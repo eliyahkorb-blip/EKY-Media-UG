@@ -2,12 +2,12 @@
   <!-- Platzhalterbild: durch echtes Foto/Mockup ersetzen (gleicher Dateiname oder Pfad im HTML anpassen). -->
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#211e19"/>
-      <stop offset="1" stop-color="#3a342a"/>
+      <stop offset="0" stop-color="#0B1426"/>
+      <stop offset="1" stop-color="#152040"/>
     </linearGradient>
   </defs>
   <rect width="1440" height="1000" fill="url(#g)"/>
-  <rect x="40" y="40" width="1360" height="920" rx="24" fill="none" stroke="#cfae6a" stroke-opacity="0.35" stroke-width="2" stroke-dasharray="10 10"/>
-  <text x="50%" y="47%" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif" font-size="44" font-weight="700" fill="#f4f1ea" fill-opacity="0.9">Hero-Visual</text>
-  <text x="50%" y="54%" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif" font-size="28" fill="#cfae6a">Website- und Dashboard-Mockup</text>
+  <rect x="40" y="40" width="1360" height="920" rx="24" fill="none" stroke="#C8A14A" stroke-opacity="0.4" stroke-width="2" stroke-dasharray="10 10"/>
+  <text x="50%" y="47%" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif" font-size="44" font-weight="700" fill="#F6F8FC" fill-opacity="0.92">Hero-Visual</text>
+  <text x="50%" y="54%" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif" font-size="28" fill="#C8A14A">Website- und Dashboard-Mockup</text>
 </svg>

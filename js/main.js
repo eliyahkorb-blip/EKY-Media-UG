@@ -1,21 +1,41 @@
 /* ==========================================================================
    EKY Media – main.js
    Vanilla JavaScript, keine Abhängigkeiten.
+
    Module:
-   1. Header-Scroll-Zustand
-   2. Mobile Navigation (Burger, Scroll-Lock, Escape, Fokus)
-   3. Dezente Scroll-Reveals (IntersectionObserver, reduced-motion-aware)
-   4. Sticky Mobile CTA
-   5. Kontaktformular (Validierung + Mailto-Fallback)
-   6. Accessibility-Widget (Schriftgröße, Kontrast, Bewegung; localStorage)
+   1. Konfiguration (Formular-Endpoint, WhatsApp)
+   2. Header-Scroll-Zustand
+   3. Drawer-Navigation (Mobile) mit Fokus-Management
+   4. Footer-Accordions (nur Mobile)
+   5. Scroll-Reveals (IntersectionObserver, reduced-motion-aware)
+   6. Kontaktformular (Validierung + Mailto-Fallback)
+   7. Accessibility-Widget (fs-md / fs-lg / hc / reduce-motion, localStorage)
    ========================================================================== */
 
 (function () {
   "use strict";
 
   /* ------------------------------------------------------------------
-     1. Header-Scroll-Zustand
+     1. Konfiguration
      ------------------------------------------------------------------ */
+
+  // TODO: Formular-Endpoint eintragen, z. B. HubSpot, Formspree,
+  // eigener Backend-Endpunkt oder mailto-Fallback (bleibt aktiv, solange leer).
+  var FORM_ENDPOINT = "";
+  var CONTACT_EMAIL = "info@ekymedia.de";
+
+  // TODO: WhatsApp-Nummer hier zentral pflegen (internationales Format ohne "+").
+  var WHATSAPP_NUMBER = "4916092647414";
+
+  // WhatsApp-Links aus der Konfiguration befüllen
+  document.querySelectorAll("[data-wa-link]").forEach(function (el) {
+    el.href = "https://wa.me/" + WHATSAPP_NUMBER;
+  });
+
+  /* ------------------------------------------------------------------
+     2. Header-Scroll-Zustand
+     ------------------------------------------------------------------ */
+
   var header = document.querySelector(".site-header");
 
   function updateHeader() {
@@ -27,58 +47,120 @@
   updateHeader();
 
   /* ------------------------------------------------------------------
-     2. Mobile Navigation
+     3. Drawer-Navigation (Mobile)
      ------------------------------------------------------------------ */
+
   var navToggle = document.querySelector(".nav-toggle");
-  var nav = document.getElementById("main-nav");
+  var drawer = document.getElementById("drawer");
+  var backdrop = document.querySelector(".drawer-backdrop");
+  var drawerClose = drawer ? drawer.querySelector(".drawer__close") : null;
+  var lastFocused = null;
 
-  function isNavOpen() {
-    return nav && nav.classList.contains("is-open");
+  function drawerOpen() {
+    return drawer && drawer.classList.contains("is-open");
   }
 
-  function setNav(open) {
-    if (!nav || !navToggle) return;
-    nav.classList.toggle("is-open", open);
+  function setDrawer(open) {
+    if (!drawer || !navToggle) return;
+    drawer.classList.toggle("is-open", open);
+    if (backdrop) backdrop.classList.toggle("is-open", open);
     navToggle.setAttribute("aria-expanded", open ? "true" : "false");
-    navToggle.setAttribute(
-      "aria-label",
-      open ? "Menü schließen" : "Menü öffnen"
-    );
-    // Body-Scroll-Lock im geöffneten Menü
     document.body.style.overflow = open ? "hidden" : "";
+
+    if (open) {
+      lastFocused = document.activeElement;
+      // Fokus in den Drawer setzen
+      if (drawerClose) drawerClose.focus();
+    } else if (lastFocused && typeof lastFocused.focus === "function") {
+      // Fokus darf nicht im (versteckten) Drawer hängen bleiben
+      lastFocused.focus();
+      lastFocused = null;
+    }
   }
 
-  if (navToggle && nav) {
+  if (navToggle && drawer) {
     navToggle.addEventListener("click", function () {
-      setNav(!isNavOpen());
+      setDrawer(!drawerOpen());
     });
 
-    // Menü schließen, wenn ein Link gewählt wird
-    nav.addEventListener("click", function (event) {
-      var target = event.target;
-      if (target && target.closest("a")) setNav(false);
+    if (drawerClose) {
+      drawerClose.addEventListener("click", function () {
+        setDrawer(false);
+      });
+    }
+
+    if (backdrop) {
+      backdrop.addEventListener("click", function () {
+        setDrawer(false);
+      });
+    }
+
+    // Klick auf einen Link schließt den Drawer
+    drawer.addEventListener("click", function (event) {
+      if (event.target && event.target.closest("a")) setDrawer(false);
     });
 
-    // Escape schließt das Menü und gibt den Fokus zurück
+    // Escape schließt den Drawer
     document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && isNavOpen()) {
-        setNav(false);
-        navToggle.focus();
+      if (event.key === "Escape" && drawerOpen()) setDrawer(false);
+    });
+
+    // Einfacher Fokus-Zirkel innerhalb des offenen Drawers
+    drawer.addEventListener("keydown", function (event) {
+      if (event.key !== "Tab" || !drawerOpen()) return;
+      var focusables = drawer.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusables.length) return;
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     });
 
-    // Bei Wechsel auf Desktop-Layout Menü-Zustand zurücksetzen
-    var mq = window.matchMedia("(min-width: 921px)");
-    var onMq = function () {
-      if (mq.matches) setNav(false);
+    // Bei Wechsel auf Desktop-Layout Drawer schließen
+    var mqDesktop = window.matchMedia("(min-width: 921px)");
+    var onDesktop = function () {
+      if (mqDesktop.matches && drawerOpen()) setDrawer(false);
     };
-    if (mq.addEventListener) mq.addEventListener("change", onMq);
-    else mq.addListener(onMq);
+    if (mqDesktop.addEventListener) mqDesktop.addEventListener("change", onDesktop);
+    else mqDesktop.addListener(onDesktop);
   }
 
   /* ------------------------------------------------------------------
-     3. Scroll-Reveals (dezent, abschaltbar)
+     4. Footer-Accordions
+     Desktop: alle Spalten offen, Summary nicht klickbar (CSS).
+     Mobile: Spalten eingeklappt und per Summary toggelbar.
      ------------------------------------------------------------------ */
+
+  var footerCols = document.querySelectorAll("details.footer-col");
+  var mqMobile = window.matchMedia("(max-width: 640px)");
+
+  function syncFooter() {
+    footerCols.forEach(function (col) {
+      if (mqMobile.matches) {
+        col.removeAttribute("open");
+      } else {
+        col.setAttribute("open", "");
+      }
+    });
+  }
+
+  if (footerCols.length) {
+    syncFooter();
+    if (mqMobile.addEventListener) mqMobile.addEventListener("change", syncFooter);
+    else mqMobile.addListener(syncFooter);
+  }
+
+  /* ------------------------------------------------------------------
+     5. Scroll-Reveals
+     ------------------------------------------------------------------ */
+
   var prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
@@ -86,7 +168,7 @@
   function motionDisabled() {
     return (
       prefersReducedMotion ||
-      document.documentElement.classList.contains("a11y-no-motion")
+      document.documentElement.classList.contains("reduce-motion")
     );
   }
 
@@ -116,41 +198,9 @@
   }
 
   /* ------------------------------------------------------------------
-     4. Sticky Mobile CTA
-     Erscheint mobil, sobald der Hero aus dem Viewport gescrollt ist,
-     und wird vor dem Kontaktbereich wieder ausgeblendet.
+     6. Kontaktformular
+     Solange FORM_ENDPOINT leer ist: Validierung + Mailto-Fallback.
      ------------------------------------------------------------------ */
-  var mobileCta = document.querySelector(".mobile-cta");
-  var heroSection = document.getElementById("start");
-  var contactSection = document.getElementById("kontakt");
-
-  function updateMobileCta() {
-    if (!mobileCta || !heroSection) return;
-    var heroBottom = heroSection.getBoundingClientRect().bottom;
-    var show = heroBottom < 0;
-    if (show && contactSection) {
-      var contactTop = contactSection.getBoundingClientRect().top;
-      if (contactTop < window.innerHeight) show = false;
-    }
-    mobileCta.classList.toggle("is-active", show);
-    document.body.classList.toggle("has-mobile-cta", show);
-  }
-
-  if (mobileCta) {
-    window.addEventListener("scroll", updateMobileCta, { passive: true });
-    window.addEventListener("resize", updateMobileCta);
-    updateMobileCta();
-  }
-
-  /* ------------------------------------------------------------------
-     5. Kontaktformular
-     TODO: Formular-Endpoint eintragen, z. B. HubSpot, Formspree,
-     eigener Backend-Endpunkt oder mailto-Fallback.
-     Solange FORM_ENDPOINT leer ist, validiert das Skript die Eingaben
-     und öffnet das Mailprogramm mit vorbefüllter Nachricht (mailto).
-     ------------------------------------------------------------------ */
-  var FORM_ENDPOINT = ""; // z. B. "https://formspree.io/f/XXXXXXXX"
-  var CONTACT_EMAIL = "info@ekymedia.de";
 
   var form = document.getElementById("contact-form");
 
@@ -231,7 +281,6 @@
       var data = new FormData(form);
 
       if (FORM_ENDPOINT) {
-        // Versand an konfigurierten Endpoint
         fetch(FORM_ENDPOINT, {
           method: "POST",
           body: data,
@@ -258,7 +307,7 @@
         return;
       }
 
-      // Mailto-Fallback: öffnet das Mailprogramm mit vorbefüllter Nachricht
+      // Mailto-Fallback
       var subject = "Anfrage über ekymedia.de – " + (data.get("company") || "");
       var bodyLines = [
         "Name: " + (data.get("name") || ""),
@@ -292,11 +341,12 @@
   }
 
   /* ------------------------------------------------------------------
-     6. Accessibility-Widget
-     Schriftgröße erhöhen, Kontrastmodus, Bewegungen reduzieren.
-     Einstellungen werden in localStorage gespeichert und beim Laden
-     früh angewendet (siehe Inline-Snippet im <head> der Seiten).
+     7. Accessibility-Widget
+     Klassen am <html>: fs-md, fs-lg, hc, reduce-motion.
+     Einstellungen in localStorage ("eky-a11y"); werden zusätzlich
+     bereits im <head> der Seiten angewendet (kein Flackern).
      ------------------------------------------------------------------ */
+
   var STORAGE_KEY = "eky-a11y";
 
   function readSettings() {
@@ -317,9 +367,10 @@
 
   function applySettings(settings) {
     var root = document.documentElement;
-    root.style.setProperty("--font-scale", settings.fontScale || 1);
-    root.classList.toggle("a11y-contrast", !!settings.contrast);
-    root.classList.toggle("a11y-no-motion", !!settings.noMotion);
+    root.classList.toggle("fs-md", settings.fs === 1);
+    root.classList.toggle("fs-lg", settings.fs === 2);
+    root.classList.toggle("hc", !!settings.hc);
+    root.classList.toggle("reduce-motion", !!settings.rm);
   }
 
   var a11ySettings = readSettings();
@@ -335,24 +386,24 @@
     var btnMotion = widget.querySelector("[data-a11y='motion']");
     var btnReset = widget.querySelector("[data-a11y='reset']");
 
+    var FONT_LABELS = [
+      "Schriftgröße: normal",
+      "Schriftgröße: größer",
+      "Schriftgröße: sehr groß"
+    ];
+
     function syncButtons() {
+      var fs = a11ySettings.fs || 0;
       if (btnFont) {
-        btnFont.setAttribute(
-          "aria-pressed",
-          (a11ySettings.fontScale || 1) > 1 ? "true" : "false"
-        );
+        btnFont.setAttribute("aria-pressed", fs > 0 ? "true" : "false");
+        btnFont.setAttribute("aria-label", FONT_LABELS[fs] + " – ändern");
+        btnFont.textContent = fs === 2 ? "A++" : fs === 1 ? "A+" : "A";
       }
       if (btnContrast) {
-        btnContrast.setAttribute(
-          "aria-pressed",
-          a11ySettings.contrast ? "true" : "false"
-        );
+        btnContrast.setAttribute("aria-pressed", a11ySettings.hc ? "true" : "false");
       }
       if (btnMotion) {
-        btnMotion.setAttribute(
-          "aria-pressed",
-          a11ySettings.noMotion ? "true" : "false"
-        );
+        btnMotion.setAttribute("aria-pressed", a11ySettings.rm ? "true" : "false");
       }
     }
 
@@ -387,26 +438,22 @@
 
     if (btnFont) {
       btnFont.addEventListener("click", function () {
-        // Drei Stufen: 1 → 1.125 → 1.25 → zurück auf 1
-        var scale = a11ySettings.fontScale || 1;
-        if (scale >= 1.25) scale = 1;
-        else if (scale >= 1.125) scale = 1.25;
-        else scale = 1.125;
-        a11ySettings.fontScale = scale;
+        // Drei Stufen: normal → größer (fs-md) → sehr groß (fs-lg) → normal
+        a11ySettings.fs = ((a11ySettings.fs || 0) + 1) % 3;
         update();
       });
     }
 
     if (btnContrast) {
       btnContrast.addEventListener("click", function () {
-        a11ySettings.contrast = !a11ySettings.contrast;
+        a11ySettings.hc = !a11ySettings.hc;
         update();
       });
     }
 
     if (btnMotion) {
       btnMotion.addEventListener("click", function () {
-        a11ySettings.noMotion = !a11ySettings.noMotion;
+        a11ySettings.rm = !a11ySettings.rm;
         update();
       });
     }

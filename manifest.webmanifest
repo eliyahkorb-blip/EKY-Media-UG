@@ -1,12 +1,12 @@
 {
-  "name": "EKY Media – Digitalagentur für Websites, KI & Wachstumssysteme",
+  "name": "EKY Media – Web- & KI-Agentur in Würzburg & Regensburg",
   "short_name": "EKY Media",
-  "description": "Websites, KI-Lösungen und Marketing-Systeme für Unternehmen in Würzburg, Regensburg und Bayern.",
+  "description": "Websites, KI-Assistenten und lokale Sichtbarkeit für Unternehmen in Bayern.",
   "lang": "de",
   "start_url": "/",
   "display": "browser",
-  "background_color": "#faf8f3",
-  "theme_color": "#181510",
+  "background_color": "#F6F8FC",
+  "theme_color": "#0B1426",
   "icons": [
     {
       "src": "assets/icons/favicon.svg",

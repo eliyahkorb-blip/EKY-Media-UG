@@ -10,17 +10,18 @@
   <meta name="robots" content="noindex, follow">
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
-  <meta name="theme-color" content="#181510">
+  <meta name="theme-color" content="#0B1426">
   <link rel="stylesheet" href="css/styles.css">
 
   <script>
     (function () {
       try {
         var s = JSON.parse(localStorage.getItem("eky-a11y")) || {};
-        var r = document.documentElement;
-        if (s.fontScale) r.style.setProperty("--font-scale", s.fontScale);
-        if (s.contrast) r.classList.add("a11y-contrast");
-        if (s.noMotion) r.classList.add("a11y-no-motion");
+        var c = document.documentElement.classList;
+        if (s.fs === 1) c.add("fs-md");
+        if (s.fs === 2) c.add("fs-lg");
+        if (s.hc) c.add("hc");
+        if (s.rm) c.add("reduce-motion");
       } catch (e) {}
     })();
   </script>
@@ -37,30 +38,97 @@
 
   <header class="site-header">
     <div class="container site-header__inner">
-      <a class="brand" href="index.html" aria-label="EKY Media – zur Startseite">
-        <span class="brand__mark" aria-hidden="true">EKY</span>
-        <span>EKY<span class="brand__suffix"> Media</span></span>
+      <a class="brand" href="index.html#start" aria-label="EKY Media – zur Startseite">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 3h14v4h-9v3h8v4h-8v3h9v4H5V3z" fill="#C8A14A"/></svg>
+        </span>
+        <span class="brand__name">EKY<span> MEDIA</span></span>
       </a>
 
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Menü öffnen">
-        <span class="nav-toggle__bar"></span>
-        <span class="nav-toggle__bar"></span>
-        <span class="nav-toggle__bar"></span>
-      </button>
-
-      <nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">
+      <nav class="main-nav" aria-label="Hauptnavigation">
         <ul class="main-nav__list">
           <li><a class="main-nav__link" href="index.html#leistungen">Leistungen</a></li>
-          <li><a class="main-nav__link" href="index.html#arbeiten">Arbeiten</a></li>
+          <li><a class="main-nav__link" href="index.html#referenzen">Referenzen</a></li>
           <li><a class="main-nav__link" href="index.html#branchen">Branchen</a></li>
           <li><a class="main-nav__link" href="index.html#prozess">Prozess</a></li>
-          <li><a class="main-nav__link" href="index.html#ueber-eky">Über EKY</a></li>
-          <li><a class="main-nav__link" href="index.html#kontakt">Kontakt</a></li>
+          <li><a class="main-nav__link" href="index.html#team">Über EKY</a></li>
         </ul>
-        <a class="btn btn--primary btn--sm" href="index.html#kontakt">Kostenfreie Analyse</a>
       </nav>
+
+      <div class="header-cta">
+        <a class="btn btn--gold btn--sm" href="index.html#kontakt">Kostenfreie Analyse</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Menü öffnen">
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+      </div>
     </div>
   </header>
+
+  <!-- Mobile Drawer-Navigation -->
+  <div class="drawer-backdrop" aria-hidden="true"></div>
+  <nav class="drawer" id="drawer" aria-label="Mobiles Menü">
+    <div class="drawer__head">
+      <a class="brand" href="index.html#start" aria-label="EKY Media – zur Startseite">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 3h14v4h-9v3h8v4h-8v3h9v4H5V3z" fill="#0B1426"/></svg>
+        </span>
+        <span class="brand__name">EKY<span> MEDIA</span></span>
+      </a>
+      <button class="drawer__close" type="button" aria-label="Menü schließen">×</button>
+    </div>
+
+    <div class="drawer__nav">
+      <ul>
+        <li>
+          <a class="drawer__link" href="index.html#leistungen">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+            Leistungen
+          </a>
+        </li>
+        <li>
+          <a class="drawer__link" href="index.html#branchen">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h.01M9 13h.01M15 9h.01M15 13h.01M10 21v-4h4v4"/></svg>
+            Branchen
+          </a>
+        </li>
+        <li>
+          <a class="drawer__link" href="index.html#prozess">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            Prozess
+          </a>
+        </li>
+        <li>
+          <a class="drawer__link" href="index.html#referenzen">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2z"/></svg>
+            Referenzen
+          </a>
+        </li>
+        <li>
+          <a class="drawer__link" href="index.html#recht">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Recht &amp; Barrierefreiheit
+          </a>
+        </li>
+        <li>
+          <a class="drawer__link" href="index.html#kontakt">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Kontakt
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="drawer__cta">
+      <a class="btn btn--gold" href="index.html#kontakt">Kostenfreies Erstgespräch</a>
+      <a class="btn btn--outline" href="https://wa.me/4916092647414" data-wa-link target="_blank" rel="noopener noreferrer">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        Per WhatsApp schreiben
+      </a>
+      <p class="drawer__meta">Würzburg &amp; Regensburg · info@ekymedia.de</p>
+    </div>
+  </nav>
 
   <main id="main">
     <div class="page-hero">
@@ -75,8 +143,8 @@
       <h2>1. Verantwortliche Stelle</h2>
       <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
       <address>
-        EKY Media UG (haftungsbeschränkt)<br>
-        Eliyah Korb<br>
+        EKY Media<br>
+        Inhaber: Eliyah Korb<br>
         Würzburger Straße 14<br>
         97250 Erlabrunn, Deutschland<br>
         E-Mail: <a href="mailto:info@ekymedia.de">info@ekymedia.de</a><br>
@@ -163,52 +231,78 @@
     </div>
   </main>
 
+  <!-- Accessibility-Widget (unten links) -->
+  <div class="a11y-widget">
+    <button class="a11y-widget__toggle" type="button" aria-expanded="false" aria-controls="a11y-panel" aria-label="Barrierefreiheit-Einstellungen öffnen">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M5 9l5 1v4l-2 7M19 9l-5 1v4l2 7M5 9h14"/></svg>
+    </button>
+    <div class="a11y-widget__panel" id="a11y-panel" role="toolbar" aria-label="Barrierefreiheit" hidden>
+      <button type="button" data-a11y="font" aria-pressed="false" aria-label="Schriftgröße ändern">A</button>
+      <button type="button" data-a11y="contrast" aria-pressed="false" aria-label="Kontrastmodus umschalten">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18" /><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg>
+      </button>
+      <button type="button" data-a11y="motion" aria-pressed="false" aria-label="Bewegungen reduzieren umschalten">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12h8"/></svg>
+      </button>
+      <button type="button" data-a11y="reset" aria-label="Einstellungen zurücksetzen">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- WhatsApp (unten rechts) -->
+  <a class="wa-fab" href="https://wa.me/4916092647414" data-wa-link target="_blank" rel="noopener noreferrer" aria-label="Per WhatsApp Kontakt aufnehmen (öffnet externen Dienst)">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+  </a>
+
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a class="brand" href="index.html">
-            <span class="brand__mark" aria-hidden="true">EKY</span>
-            <span>EKY<span class="brand__suffix"> Media</span></span>
+          <a class="brand" href="index.html#start">
+            <span class="brand__mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 3h14v4h-9v3h8v4h-8v3h9v4H5V3z" fill="#0B1426"/></svg>
+            </span>
+            <span class="brand__name">EKY<span> MEDIA</span></span>
           </a>
-          <p>Digitale Systeme, die aus Besuchern Kunden machen – Websites, KI und Sichtbarkeit aus einer Hand.</p>
+          <p>Websites, KI und Sichtbarkeit aus einer Hand – für Unternehmen, die digital wachsen wollen.</p>
         </div>
 
-        <nav class="footer-col" aria-label="Footer-Navigation">
-          <h2>Navigation</h2>
+        <details class="footer-col" open>
+          <summary>Leistungen</summary>
           <ul>
-            <li><a href="index.html#leistungen">Leistungen</a></li>
-            <li><a href="index.html#arbeiten">Arbeiten</a></li>
-            <li><a href="index.html#branchen">Branchen</a></li>
+            <li><a href="index.html#leistungen">Websites &amp; Conversion</a></li>
+            <li><a href="index.html#leistungen">KI &amp; Automatisierung</a></li>
+            <li><a href="index.html#leistungen">Local SEO &amp; Sichtbarkeit</a></li>
+            <li><a href="index.html#referenzen">Referenzen</a></li>
             <li><a href="index.html#prozess">Prozess</a></li>
-            <li><a href="index.html#ueber-eky">Über EKY</a></li>
-            <li><a href="index.html#kontakt">Kontakt</a></li>
           </ul>
-        </nav>
+        </details>
 
-        <div class="footer-col">
-          <h2>Kontakt</h2>
+        <details class="footer-col" open>
+          <summary>Kontakt</summary>
           <ul>
             <li><a href="mailto:info@ekymedia.de">info@ekymedia.de</a></li>
             <li><a href="tel:+4916092647414">+49 160 92647414</a></li>
+            <li><a href="https://wa.me/4916092647414" data-wa-link target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
             <li>Würzburg &amp; Regensburg, Bayern</li>
           </ul>
-        </div>
+        </details>
 
-        <nav class="footer-col" aria-label="Rechtliches">
-          <h2>Rechtliches</h2>
+        <details class="footer-col" open>
+          <summary>Rechtliches</summary>
           <ul>
             <li><a href="impressum.html">Impressum</a></li>
             <li><a href="datenschutz.html">Datenschutz</a></li>
             <li><a href="agb.html">AGB</a></li>
             <li><a href="barrierefreiheit.html">Barrierefreiheit</a></li>
           </ul>
-        </nav>
+        </details>
       </div>
 
       <div class="footer-meta">
         <p>© 2026 EKY Media. Alle Rechte vorbehalten.</p>
-        <p>Digitalagentur in Würzburg &amp; Regensburg, Bayern</p>
+        <p>Web- &amp; KI-Agentur · Würzburg &amp; Regensburg, Bayern</p>
       </div>
     </div>
   </footer>
