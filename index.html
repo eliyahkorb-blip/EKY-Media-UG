@@ -278,6 +278,7 @@
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
         Per WhatsApp schreiben
       </a>
+      <div class="drawer__socials" data-socials hidden></div>
       <p class="drawer__meta">Würzburg &amp; Regensburg · info@ekymedia.de</p>
     </div>
   </nav>
@@ -316,8 +317,14 @@
               <div class="mockup__headline"></div>
               <div class="mockup__line"></div>
               <div class="mockup__line mockup__line--short"></div>
+              <div class="mockup__bars">
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="mockup__toast">
+                <span class="mockup__toast-dot"></span>
+                Neue Anfrage eingegangen
+              </div>
               <div class="mockup__cta">Termin anfragen</div>
-              <div class="mockup__line mockup__line--short"></div>
             </div>
           </div>
           <div class="hero__badge hero__badge--tl">
@@ -420,7 +427,7 @@
               <li>Individuelle Website oder Relaunch – komplett selbst entwickelt</li>
               <li>Klare Conversion-Pfade vom ersten Klick zur Anfrage</li>
               <li>Landingpages für Kampagnen und einzelne Leistungen</li>
-              <li>Sehr schnelle Ladezeiten, sauber auf jedem Gerät</li>
+              <li>Auf Performance optimiert, sauber auf jedem Gerät</li>
             </ul>
             <p class="service-panel__fit"><strong>Lohnt sich, wenn:</strong> Besucher da sind, aber kaum jemand anfragt – oder der Auftritt Ihrer Arbeit nicht mehr gerecht wird.</p>
           </div>
@@ -479,7 +486,7 @@
             <ul class="service-panel__list">
               <li>Local SEO für Ihre Region und Ihr Google-Unternehmensprofil</li>
               <li>SEO-Fundament: Struktur, Inhalte, Technik</li>
-              <li>GEO – sichtbar in KI-Antworten von ChatGPT &amp; Co.</li>
+              <li>GEO – Inhalte so strukturieren, dass KI-Suchsysteme sie besser verstehen</li>
               <li>Social-Media- und Content-Strukturen, die durchhaltbar sind</li>
             </ul>
             <p class="service-panel__fit"><strong>Lohnt sich, wenn:</strong> der Wettbewerb in der lokalen Suche vor Ihnen steht – oder Ihre Inhalte in KI-Antworten nicht vorkommen.</p>
@@ -501,7 +508,7 @@
         <div class="section-head reveal">
           <p class="eyebrow"><span class="eyebrow__num">02</span> Referenzen</p>
           <h2 id="referenzen-heading">So sehen Systeme aus, die Anfragen bringen.</h2>
-          <p class="lead">Beispielprojekte und Demos aus unseren Schwerpunktbranchen – echte Kundenprojekte zeigen wir Ihnen gern im Gespräch.</p>
+          <p class="lead">Demo-Konzepte aus unseren Schwerpunktbranchen – so bauen wir. Echte Kundenprojekte zeigen wir Ihnen im Gespräch.</p>
         </div>
 
         <div class="work-grid">
@@ -510,7 +517,7 @@
               <img src="assets/img/placeholder-work-handwerk.svg" alt="Beispielprojekt: Conversion-Website für einen Handwerksbetrieb" loading="lazy" width="1200" height="900">
             </div>
             <div class="work-card__body">
-              <p class="work-card__tag">Handwerk</p>
+              <p class="work-card__tag">Demo · Handwerk</p>
               <h3>Website für Handwerker</h3>
               <p class="work-card__text">Klare Leistungen, Local SEO und ein Anfrageformular, das Aufträge planbar macht – statt reiner Empfehlungs-Lotterie.</p>
               <p class="work-card__result">Ziel: planbare, qualifizierte Anfragen</p>
@@ -522,7 +529,7 @@
               <img src="assets/img/placeholder-work-praxis.svg" alt="Beispielprojekt: Praxiswebsite für eine Zahnarztpraxis" loading="lazy" width="1200" height="900">
             </div>
             <div class="work-card__body">
-              <p class="work-card__tag">Medizin</p>
+              <p class="work-card__tag">Demo · Medizin</p>
               <h3>Zahnarztpraxis</h3>
               <p class="work-card__text">Praxiswebsite mit klarer Patientenführung und Terminstruktur – Vertrauen entsteht vor dem ersten Besuch.</p>
               <p class="work-card__result">Ziel: einfachere Terminbuchung</p>
@@ -534,7 +541,7 @@
               <img src="assets/img/placeholder-work-gastro.svg" alt="Beispielprojekt: Webauftritt für Gastronomie und Hotellerie" loading="lazy" width="1200" height="900">
             </div>
             <div class="work-card__body">
-              <p class="work-card__tag">Gastronomie &amp; Hotel</p>
+              <p class="work-card__tag">Demo · Gastronomie &amp; Hotel</p>
               <h3>Restaurant &amp; Hotel</h3>
               <p class="work-card__text">Digitale Speisekarte, Reservierungs-CTA und Direktbuchung – weniger Abhängigkeit von Plattform-Provisionen.</p>
               <p class="work-card__result">Ziel: mehr direkte Buchungen</p>
@@ -546,7 +553,7 @@
               <img src="assets/img/placeholder-work-b2b.svg" alt="Beispielprojekt: Lead-Website für ein B2B-Unternehmen" loading="lazy" width="1200" height="900">
             </div>
             <div class="work-card__body">
-              <p class="work-card__tag">Mittelstand &amp; B2B</p>
+              <p class="work-card__tag">Demo · Mittelstand &amp; B2B</p>
               <h3>B2B-Lead-Website</h3>
               <p class="work-card__text">Erklärungsbedürftige Leistungen klar strukturiert, mit Referenzaufbau und geführter Angebotsanfrage.</p>
               <p class="work-card__result">Ziel: strukturierte B2B-Anfragen</p>
@@ -558,7 +565,7 @@
               <img src="assets/img/placeholder-work-praxis.svg" alt="Demo: KI-Telefonassistent für Unternehmen" loading="lazy" width="1200" height="900">
             </div>
             <div class="work-card__body">
-              <p class="work-card__tag">KI · Demo</p>
+              <p class="work-card__tag">Demo · KI</p>
               <h3>KI-Telefonassistent</h3>
               <p class="work-card__text">Nimmt Anrufe rund um die Uhr an, qualifiziert Anliegen vor und leitet Termine weiter – auch nach Feierabend.</p>
               <p class="work-card__result">Ziel: kein verpasster Anruf</p>
@@ -570,7 +577,7 @@
               <img src="assets/img/placeholder-work-handwerk.svg" alt="Beispielprojekt: Local-SEO-Sichtbarkeit für lokale Dienstleister" loading="lazy" width="1200" height="900">
             </div>
             <div class="work-card__body">
-              <p class="work-card__tag">Local SEO</p>
+              <p class="work-card__tag">Demo · Local SEO</p>
               <h3>Lokale Sichtbarkeit</h3>
               <p class="work-card__text">Google-Unternehmensprofil, Bewertungsstruktur und lokale Inhalte – sichtbar bei „Branche + Stadt“.</p>
               <p class="work-card__result">Ziel: vorn in der lokalen Suche</p>
@@ -792,8 +799,8 @@
             <div class="acc__body">
               <ul>
                 <li>Schlanker Code, keine Framework-Last</li>
-                <li>Optimierte Bilder und sehr schnelle Ladezeiten</li>
-                <li>Gut für Nutzer, gut für Google-Rankings</li>
+                <li>Optimierte Bilder, auf kurze Ladezeiten ausgelegt</li>
+                <li>Gut für Nutzer und Suchmaschinen</li>
               </ul>
             </div>
           </details>
@@ -1041,6 +1048,9 @@
             </div>
 
             <button class="btn btn--navy" type="submit" style="margin-top:16px;width:100%;">Kostenfreie Analyse sichern</button>
+
+            <!-- Wird per JS ausgeblendet, sobald FORM_ENDPOINT konfiguriert ist -->
+            <p class="form-note form-note--mailto" data-mailto-note>Beim Absenden öffnet sich Ihr E-Mail-Programm mit der vorbereiteten Anfrage. Erst mit dem Senden dort geht die Nachricht an uns.</p>
 
             <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
 

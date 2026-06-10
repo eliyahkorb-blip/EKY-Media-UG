@@ -485,6 +485,27 @@ p { margin: 0 0 1em; }
   text-align: center;
 }
 
+.drawer__socials {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.drawer__socials a {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--on-blue-border);
+  display: grid;
+  place-items: center;
+  color: var(--on-blue-muted);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.drawer__socials a:hover { border-color: var(--gold); color: var(--gold-hover); }
+.drawer__socials .icon { width: 19px; height: 19px; }
+
 /* --------------------------------------------------------------------------
    4. Buttons & gemeinsame Komponenten
    -------------------------------------------------------------------------- */
@@ -711,6 +732,24 @@ p { margin: 0 0 1em; }
 /* Hero-Visual: Browser-Mockup + schwebende Badges */
 .hero__visual { position: relative; }
 
+/* Goldener Glow hinter dem Mockup für Tiefe */
+.hero__visual::before {
+  content: "";
+  position: absolute;
+  inset: -10% -6%;
+  background: radial-gradient(closest-side, rgba(200, 161, 74, 0.16), transparent 70%);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+/* Dezente Perspektive, richtet sich beim Hover auf */
+.hero__visual .mockup {
+  transform: perspective(1400px) rotateY(-7deg) rotateX(2deg);
+  transition: transform 0.45s ease;
+}
+
+.hero__visual:hover .mockup { transform: perspective(1400px) rotateY(0deg) rotateX(0deg); }
+
 .mockup {
   background: var(--blue-2);
   border-radius: var(--radius);
@@ -751,15 +790,61 @@ p { margin: 0 0 1em; }
 .mockup__line--short { width: 52%; }
 
 .mockup__cta {
-  height: 36px;
+  height: 38px;
   width: 190px;
-  border-radius: var(--radius-pill);
-  background: var(--gold);
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--gold-hover), var(--gold));
   display: grid;
   place-items: center;
   color: var(--blue);
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Abstraktes Wachstums-Chart (dekorativ, keine echten Kennzahlen) */
+.mockup__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 56px;
+  padding: 4px 2px 0;
+}
+
+.mockup__bars span {
+  flex: 1;
+  border-radius: 4px 4px 2px 2px;
+  background: linear-gradient(180deg, var(--gold), rgba(200, 161, 74, 0.25));
+}
+
+.mockup__bars span:nth-child(1) { height: 28%; opacity: 0.45; }
+.mockup__bars span:nth-child(2) { height: 40%; opacity: 0.55; }
+.mockup__bars span:nth-child(3) { height: 36%; opacity: 0.65; }
+.mockup__bars span:nth-child(4) { height: 58%; opacity: 0.78; }
+.mockup__bars span:nth-child(5) { height: 74%; opacity: 0.9; }
+.mockup__bars span:nth-child(6) { height: 100%; }
+
+.mockup__toast {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  width: fit-content;
+  background: var(--blue-3);
+  border: 1px solid var(--on-blue-border);
+  border-radius: 10px;
+  padding: 9px 14px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--on-blue);
+}
+
+.mockup__toast-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 3px rgba(200, 161, 74, 0.25);
 }
 
 .hero__badge {
@@ -970,7 +1055,14 @@ p { margin: 0 0 1em; }
   border-bottom: 1px solid var(--on-blue-border);
 }
 
-.work-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.work-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.work-card:hover .work-card__media img { transform: scale(1.045); }
 
 .work-card__body { padding: 20px 20px 22px; display: grid; gap: 8px; }
 
@@ -1351,6 +1443,15 @@ p { margin: 0 0 1em; }
 .form-status { margin: 12px 0 0; font-weight: 700; font-size: 0.93rem; }
 .form-status[data-state="success"] { color: #2e6b3a; }
 .form-status[data-state="error"] { color: #b3362b; }
+.form-status[data-state="info"] { color: var(--text); }
+
+.form-note--mailto {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: var(--surface-soft);
+  border-radius: 10px;
+  color: var(--muted);
+}
 
 .form-note { margin: 16px 0 0; font-size: 0.81rem; color: var(--muted); }
 
@@ -1470,7 +1571,7 @@ p { margin: 0 0 1em; }
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  border: 1px solid transparent;
+  border: 1px solid var(--on-blue-border);
   background: transparent;
   color: var(--on-blue);
   font-family: inherit;

@@ -28,12 +28,12 @@
   // TODO: WhatsApp-Nummer hier zentral pflegen (internationales Format ohne "+").
   var WHATSAPP_NUMBER = "4916092647414";
 
-  // TODO: Social-Profile eintragen, sobald die Links feststehen.
-  // Nur ausgefüllte Profile werden im Header/Footer angezeigt –
+  // Nur ausgefüllte Profile werden im Header/Footer/Drawer angezeigt –
   // leere Einträge bleiben unsichtbar (keine toten Links).
+  // TODO: LinkedIn/Facebook ergänzen, sobald die Profile existieren.
   var SOCIAL_LINKS = {
-    instagram: "",
-    tiktok: "",
+    instagram: "https://www.instagram.com/ekymedia/",
+    tiktok: "https://www.tiktok.com/@ekymediagbr",
     linkedin: "",
     facebook: ""
   };
@@ -246,6 +246,11 @@
 
   var form = document.getElementById("contact-form");
 
+  // Hinweis "öffnet Ihr E-Mail-Programm" nur zeigen, solange kein Endpoint
+  // konfiguriert ist; mit echtem Endpoint wird er automatisch ausgeblendet.
+  var mailtoNote = document.querySelector("[data-mailto-note]");
+  if (mailtoNote && FORM_ENDPOINT) mailtoNote.hidden = true;
+
   function setFieldError(field, message) {
     var errorEl = document.getElementById(field.id + "-error");
     if (message) {
@@ -349,7 +354,10 @@
         return;
       }
 
-      // Mailto-Fallback
+      // Mailto-Fallback: öffnet das E-Mail-Programm des Nutzers.
+      // WICHTIG: Hier wird bewusst KEINE Erfolgsmeldung angezeigt –
+      // die Anfrage ist erst unterwegs, wenn der Nutzer die E-Mail
+      // in seinem Programm tatsächlich absendet.
       var subject = "Anfrage über ekymedia.de – " + (data.get("company") || "");
       var bodyLines = [
         "Name: " + (data.get("name") || ""),
@@ -373,11 +381,10 @@
         encodeURIComponent(bodyLines.join("\n"));
 
       if (status) {
-        status.dataset.state = "success";
+        status.dataset.state = "info";
         status.textContent =
-          "Ihr E-Mail-Programm öffnet sich mit der vorbereiteten Nachricht. Alternativ erreichen Sie uns unter " +
-          CONTACT_EMAIL +
-          ".";
+          "Ihr E-Mail-Programm öffnet sich mit der vorbereiteten Anfrage. Bitte senden Sie die E-Mail dort ab – erst dann erreicht sie uns. Alternativ: " +
+          CONTACT_EMAIL;
       }
     });
   }

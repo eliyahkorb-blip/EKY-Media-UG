@@ -37,7 +37,7 @@ Statische Website für **EKY Media**, Web- & KI-Agentur in Würzburg & Regensbur
 3. Optional: Custom Domain `ekymedia.de` eintragen und beim DNS-Anbieter auf GitHub Pages zeigen lassen.
 4. „Enforce HTTPS“ aktivieren.
 
-> Hinweis: Canonical-URLs, `robots.txt` und `sitemap.xml` sind auf `https://ekymedia.de/` ausgelegt. Bei Veröffentlichung unter `https://<user>.github.io/<repo>/` diese URLs anpassen.
+> **Wichtig vor Livegang:** Canonical-URLs, `robots.txt`, `sitemap.xml` und JSON-LD sind durchgängig auf `https://ekymedia.de/` ausgelegt. Die Seite muss daher unter dieser Custom Domain veröffentlicht werden (Settings → Pages → Custom domain, DNS beim Provider auf GitHub Pages zeigen lassen). Soll sie stattdessen unter `https://<user>.github.io/<repo>/` laufen, müssen alle diese URLs vorher angepasst werden – sonst zeigen Canonical und Sitemap auf eine fremde Domain.
 
 ## Accessibility-Widget
 
@@ -62,11 +62,12 @@ Aktive Zustände sind gold hinterlegt. Einstellungen liegen in `localStorage` (`
 ### Kontaktformular / Endpoint
 
 - `js/main.js`, Konstante **`FORM_ENDPOINT`**. Solange leer: Validierung + Mailto-Fallback an `info@ekymedia.de`.
-- Bei Einbindung eines Formulardienstes den Abschnitt „Kontaktaufnahme“ in `datenschutz.html` anpassen (TODO-Kommentare gesetzt).
+- Die UX ist ehrlich gehalten: Unter dem Submit-Button steht ein sichtbarer Hinweis, dass sich das E-Mail-Programm öffnet (`data-mailto-note`), und nach dem Klick erscheint eine neutrale Info-Meldung – **keine** grüne Erfolgsmeldung. Eine Erfolgsmeldung gibt es nur im Endpoint-Modus nach tatsächlich erfolgreicher Übertragung.
+- Wird ein Endpoint eingetragen, blendet das Skript den Mailto-Hinweis automatisch aus. Dann den Abschnitt „Kontaktaufnahme“ in `datenschutz.html` anpassen (TODO-Kommentare gesetzt).
 
 ### Social-Media-Links
 
-- Zentral in `js/main.js`, Objekt **`SOCIAL_LINKS`** (Instagram, TikTok, LinkedIn, Facebook). Nur ausgefüllte Profile werden als Icons im Header und Footer angezeigt (`[data-socials]`-Container) – leere Einträge bleiben unsichtbar, es gibt keine toten Links.
+- Zentral in `js/main.js`, Objekt **`SOCIAL_LINKS`**. Aktuell aktiv: **Instagram** (`instagram.com/ekymedia`) und **TikTok** (`tiktok.com/@ekymediagbr`) – sichtbar als Icons im Header (Desktop), im mobilen Drawer und im Footer. LinkedIn/Facebook sind leer und bleiben unsichtbar, bis dort eine URL eingetragen wird (keine toten Links). Alle Links öffnen in neuem Tab mit `rel="noopener noreferrer"`.
 
 ### Calendly
 
@@ -88,7 +89,7 @@ Aktive Zustände sind gold hinterlegt. Einstellungen liegen in `localStorage` (`
 
 ## Rechtlicher Hinweis
 
-Impressum, Datenschutzerklärung, AGB und Barrierefreiheitserklärung sind **sorgfältige Entwürfe, keine Rechtsberatung**. Vor Veröffentlichung:
+Impressum, Datenschutzerklärung, AGB und Barrierefreiheitserklärung sind **sorgfältige Entwürfe, keine Rechtsberatung**. Auf der öffentlichen Website stehen bewusst keine „Entwurf“-Hinweise mehr – diese existieren nur noch als Code-Kommentare in den jeweiligen Dateien und hier im README. Vor bzw. nach Veröffentlichung:
 
 1. Rechtsform prüfen (siehe CONFIG in `impressum.html`); UG-Angaben erst nach Handelsregister-Eintragung aktivieren.
 2. Tatsächlich genutzte Dienste (Hosting, Domain, Formular, Calendly, Social Media) mit der Datenschutzerklärung abgleichen.
