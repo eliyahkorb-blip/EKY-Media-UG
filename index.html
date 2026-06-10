@@ -207,6 +207,9 @@
       </nav>
 
       <div class="header-cta">
+        <!-- Social-Icons: werden aus SOCIAL_LINKS in js/main.js befüllt;
+             ohne konfigurierte Profile bleibt der Container unsichtbar. -->
+        <div class="header-socials" data-socials hidden></div>
         <a class="btn btn--gold btn--sm" href="#kontakt">Kostenfreie Analyse</a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Menü öffnen">
           <span class="nav-toggle__bar"></span>
@@ -388,18 +391,21 @@
     <section class="section section--white" id="leistungen" aria-labelledby="leistungen-heading">
       <div class="container">
         <div class="section-head reveal">
-          <p class="eyebrow">Leistungen</p>
+          <p class="eyebrow"><span class="eyebrow__num">01</span> Leistungen</p>
           <h2 id="leistungen-heading">Drei Bausteine. Ein System. Ein Ansprechpartner.</h2>
           <p class="lead">Website, KI und Sichtbarkeit greifen ineinander – Sie starten mit dem, was den größten Hebel hat.</p>
         </div>
 
         <div class="service reveal">
-          <div class="service__icon" aria-hidden="true">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
-          </div>
+          <span class="service__num" aria-hidden="true">01</span>
           <div>
-            <h3>Websites &amp; Conversion</h3>
-            <p class="service__pitch">Individuell entwickelte Websites, die Besucher gezielt zur Anfrage führen – schnell, modern, messbar.</p>
+            <div class="service__head">
+              <span class="service__icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+              </span>
+              <h3>Websites &amp; Conversion</h3>
+            </div>
+            <p class="service__pitch">Individuell entwickelt. Auf Anfragen gebaut. Kein Baukasten, kein Theme – Ihre Website als Vertriebsinstrument.</p>
             <ul class="service__tags">
               <li>Webdesign</li>
               <li>Relaunch</li>
@@ -408,34 +414,28 @@
               <li>Ladezeit</li>
             </ul>
           </div>
-          <div class="service__details">
-            <details class="acc">
-              <summary>Was konkret umgesetzt wird</summary>
-              <div class="acc__body">
-                <ul>
-                  <li>Individuelle Website oder Relaunch – ohne Baukasten, ohne Theme</li>
-                  <li>Klare Conversion-Pfade: vom ersten Klick zur Anfrage</li>
-                  <li>Landingpages für Kampagnen und einzelne Leistungen</li>
-                  <li>Sehr schnelle Ladezeiten, sauber auf Mobilgeräten</li>
-                </ul>
-              </div>
-            </details>
-            <details class="acc">
-              <summary>Wann sich das lohnt</summary>
-              <div class="acc__body">
-                <p>Wenn Ihre Website Besucher hat, aber kaum Anfragen bringt – oder wenn der Auftritt dem Niveau Ihrer Arbeit nicht mehr gerecht wird.</p>
-              </div>
-            </details>
+          <div class="service-panel">
+            <h4>Im Projekt enthalten</h4>
+            <ul class="service-panel__list">
+              <li>Individuelle Website oder Relaunch – komplett selbst entwickelt</li>
+              <li>Klare Conversion-Pfade vom ersten Klick zur Anfrage</li>
+              <li>Landingpages für Kampagnen und einzelne Leistungen</li>
+              <li>Sehr schnelle Ladezeiten, sauber auf jedem Gerät</li>
+            </ul>
+            <p class="service-panel__fit"><strong>Lohnt sich, wenn:</strong> Besucher da sind, aber kaum jemand anfragt – oder der Auftritt Ihrer Arbeit nicht mehr gerecht wird.</p>
           </div>
         </div>
 
         <div class="service reveal">
-          <div class="service__icon" aria-hidden="true">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="16" height="12" rx="3"/><circle cx="9" cy="12" r="1.2" fill="currentColor"/><circle cx="15" cy="12" r="1.2" fill="currentColor"/><path d="M12 6V3M8 21h8"/></svg>
-          </div>
+          <span class="service__num" aria-hidden="true">02</span>
           <div>
-            <h3>KI &amp; Automatisierung</h3>
-            <p class="service__pitch">Digitale Assistenten für wiederkehrende Aufgaben – damit keine Anfrage verloren geht und weniger liegen bleibt.</p>
+            <div class="service__head">
+              <span class="service__icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="16" height="12" rx="3"/><circle cx="9" cy="12" r="1.2" fill="currentColor"/><circle cx="15" cy="12" r="1.2" fill="currentColor"/><path d="M12 6V3M8 21h8"/></svg>
+              </span>
+              <h3>KI &amp; Automatisierung</h3>
+            </div>
+            <p class="service__pitch">Digitale Assistenten für wiederkehrende Aufgaben. Keine Anfrage geht verloren, weniger bleibt liegen.</p>
             <ul class="service__tags">
               <li>KI-Telefonassistent</li>
               <li>Chatbot</li>
@@ -444,34 +444,28 @@
               <li>Terminlogik</li>
             </ul>
           </div>
-          <div class="service__details">
-            <details class="acc">
-              <summary>Was konkret umgesetzt wird</summary>
-              <div class="acc__body">
-                <ul>
-                  <li>KI-Telefonassistent: nimmt Anrufe 24/7 an und qualifiziert vor</li>
-                  <li>Chatbot auf der Website für Standardfragen und Erstkontakt</li>
-                  <li>Angebots- und E-Mail-Automatisierung, CRM-Workflows</li>
-                  <li>Termin- und Anfragelogik, die zu Ihren Abläufen passt</li>
-                </ul>
-              </div>
-            </details>
-            <details class="acc">
-              <summary>Wann sich das lohnt</summary>
-              <div class="acc__body">
-                <p>Wenn Anrufe in Stoßzeiten verloren gehen, Rückfragen Zeit fressen oder Angebote zu lange dauern. KI ist bei uns Werkzeug, kein Selbstzweck.</p>
-              </div>
-            </details>
+          <div class="service-panel">
+            <h4>Im Projekt enthalten</h4>
+            <ul class="service-panel__list">
+              <li>KI-Telefonassistent: nimmt Anrufe 24/7 an, qualifiziert vor</li>
+              <li>Chatbot für Standardfragen und Erstkontakt</li>
+              <li>Angebots- und E-Mail-Automatisierung, CRM-Workflows</li>
+              <li>Termin- und Anfragelogik, passend zu Ihren Abläufen</li>
+            </ul>
+            <p class="service-panel__fit"><strong>Lohnt sich, wenn:</strong> Anrufe in Stoßzeiten verloren gehen oder Angebote zu lange dauern. KI ist bei uns Werkzeug, kein Selbstzweck.</p>
           </div>
         </div>
 
         <div class="service reveal">
-          <div class="service__icon" aria-hidden="true">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/><path d="M8 11h6M11 8v6"/></svg>
-          </div>
+          <span class="service__num" aria-hidden="true">03</span>
           <div>
-            <h3>Sichtbarkeit &amp; Marketing</h3>
-            <p class="service__pitch">Gefunden werden, wo Ihre Kunden suchen – in der lokalen Google-Suche, auf Social Media und in KI-Suchsystemen.</p>
+            <div class="service__head">
+              <span class="service__icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/><path d="M8 11h6M11 8v6"/></svg>
+              </span>
+              <h3>Sichtbarkeit &amp; Marketing</h3>
+            </div>
+            <p class="service__pitch">Gefunden werden, wo Ihre Kunden suchen: lokale Google-Suche, Social Media, KI-Suchsysteme.</p>
             <ul class="service__tags">
               <li>Local SEO</li>
               <li>Google-Profil</li>
@@ -480,24 +474,15 @@
               <li>Content</li>
             </ul>
           </div>
-          <div class="service__details">
-            <details class="acc">
-              <summary>Was konkret umgesetzt wird</summary>
-              <div class="acc__body">
-                <ul>
-                  <li>Local SEO für Ihre Region und Ihr Google-Unternehmensprofil</li>
-                  <li>SEO-Fundament: Struktur, Inhalte, Technik</li>
-                  <li>GEO – Optimierung für KI-Suchsysteme wie ChatGPT &amp; Co.</li>
-                  <li>Social-Media- und Content-Strukturen, die durchhaltbar sind</li>
-                </ul>
-              </div>
-            </details>
-            <details class="acc">
-              <summary>Wann sich das lohnt</summary>
-              <div class="acc__body">
-                <p>Wenn der Wettbewerb in der lokalen Suche vor Ihnen steht – oder Ihre Inhalte in KI-Antworten schlicht nicht vorkommen.</p>
-              </div>
-            </details>
+          <div class="service-panel">
+            <h4>Im Projekt enthalten</h4>
+            <ul class="service-panel__list">
+              <li>Local SEO für Ihre Region und Ihr Google-Unternehmensprofil</li>
+              <li>SEO-Fundament: Struktur, Inhalte, Technik</li>
+              <li>GEO – sichtbar in KI-Antworten von ChatGPT &amp; Co.</li>
+              <li>Social-Media- und Content-Strukturen, die durchhaltbar sind</li>
+            </ul>
+            <p class="service-panel__fit"><strong>Lohnt sich, wenn:</strong> der Wettbewerb in der lokalen Suche vor Ihnen steht – oder Ihre Inhalte in KI-Antworten nicht vorkommen.</p>
           </div>
         </div>
 
@@ -514,7 +499,7 @@
     <section class="section section--blue" id="referenzen" aria-labelledby="referenzen-heading">
       <div class="container">
         <div class="section-head reveal">
-          <p class="eyebrow">Referenzen</p>
+          <p class="eyebrow"><span class="eyebrow__num">02</span> Referenzen</p>
           <h2 id="referenzen-heading">So sehen Systeme aus, die Anfragen bringen.</h2>
           <p class="lead">Beispielprojekte und Demos aus unseren Schwerpunktbranchen – echte Kundenprojekte zeigen wir Ihnen gern im Gespräch.</p>
         </div>
@@ -601,7 +586,7 @@
     <section class="section" id="branchen" aria-labelledby="branchen-heading">
       <div class="container">
         <div class="section-head reveal">
-          <p class="eyebrow">Branchen</p>
+          <p class="eyebrow"><span class="eyebrow__num">03</span> Branchen</p>
           <h2 id="branchen-heading">Zu Hause in Branchen, in denen Vertrauen zählt.</h2>
         </div>
 
@@ -686,7 +671,7 @@
     <section class="section section--white" id="prozess" aria-labelledby="prozess-heading">
       <div class="container">
         <div class="section-head reveal">
-          <p class="eyebrow">Prozess</p>
+          <p class="eyebrow"><span class="eyebrow__num">04</span> Prozess</p>
           <h2 id="prozess-heading">In vier Schritten zum Auftritt, der für Sie arbeitet.</h2>
         </div>
 
@@ -1067,23 +1052,14 @@
 
   </main>
 
-  <!-- Accessibility-Widget (unten links) -->
-  <div class="a11y-widget">
-    <button class="a11y-widget__toggle" type="button" aria-expanded="false" aria-controls="a11y-panel" aria-label="Barrierefreiheit-Einstellungen öffnen">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M5 9l5 1v4l-2 7M19 9l-5 1v4l2 7M5 9h14"/></svg>
+  <!-- Accessibility-Widget: fixierte Navy-Pille unten links -->
+  <div class="a11y-widget" role="toolbar" aria-label="Barrierefreiheit">
+    <button type="button" data-a11y="font" data-level="0" aria-pressed="false" aria-label="Schriftgröße ändern (aktuell: Standard)">
+      <span aria-hidden="true">Aa</span>
     </button>
-    <div class="a11y-widget__panel" id="a11y-panel" role="toolbar" aria-label="Barrierefreiheit" hidden>
-      <button type="button" data-a11y="font" aria-pressed="false" aria-label="Schriftgröße ändern">A</button>
-      <button type="button" data-a11y="contrast" aria-pressed="false" aria-label="Kontrastmodus umschalten">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18" /><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg>
-      </button>
-      <button type="button" data-a11y="motion" aria-pressed="false" aria-label="Bewegungen reduzieren umschalten">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12h8"/></svg>
-      </button>
-      <button type="button" data-a11y="reset" aria-label="Einstellungen zurücksetzen">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
-      </button>
-    </div>
+    <button type="button" data-a11y="contrast" aria-pressed="false" aria-label="Kontrastmodus umschalten">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg>
+    </button>
   </div>
 
   <!-- WhatsApp (unten rechts) -->
@@ -1103,20 +1079,9 @@
         <span class="brand__media" aria-hidden="true">MEDIA</span>
       </a>
           <p>Websites, KI und Sichtbarkeit aus einer Hand – für Unternehmen, die digital wachsen wollen.</p>
-          <!-- TODO: Social-Profile aktivieren, sobald die Links feststehen.
-               Vorlage (auskommentiert, damit öffentlich nichts Leeres erscheint):
-          <div class="footer-socials">
-            <a href="https://instagram.com/..." aria-label="EKY Media auf Instagram">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
-            </a>
-            <a href="https://tiktok.com/@..." aria-label="EKY Media auf TikTok">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4c.5 2.5 2.5 4.5 5 5"/></svg>
-            </a>
-            <a href="https://linkedin.com/company/..." aria-label="EKY Media auf LinkedIn">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4"/></svg>
-            </a>
-          </div>
-          -->
+          <!-- Social-Icons: werden aus SOCIAL_LINKS in js/main.js befüllt;
+               ohne konfigurierte Profile bleibt der Container unsichtbar. -->
+          <div class="footer-socials" data-socials hidden></div>
         </div>
 
         <details class="footer-col" open>

@@ -48,6 +48,7 @@
       </nav>
 
       <div class="header-cta">
+        <div class="header-socials" data-socials hidden></div>
         <a class="btn btn--gold btn--sm" href="index.html#kontakt">Kostenfreie Analyse</a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Menü öffnen">
           <span class="nav-toggle__bar"></span>
@@ -170,23 +171,14 @@
     </div>
   </main>
 
-  <!-- Accessibility-Widget (unten links) -->
-  <div class="a11y-widget">
-    <button class="a11y-widget__toggle" type="button" aria-expanded="false" aria-controls="a11y-panel" aria-label="Barrierefreiheit-Einstellungen öffnen">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M5 9l5 1v4l-2 7M19 9l-5 1v4l2 7M5 9h14"/></svg>
+  <!-- Accessibility-Widget: fixierte Navy-Pille unten links -->
+  <div class="a11y-widget" role="toolbar" aria-label="Barrierefreiheit">
+    <button type="button" data-a11y="font" data-level="0" aria-pressed="false" aria-label="Schriftgröße ändern (aktuell: Standard)">
+      <span aria-hidden="true">Aa</span>
     </button>
-    <div class="a11y-widget__panel" id="a11y-panel" role="toolbar" aria-label="Barrierefreiheit" hidden>
-      <button type="button" data-a11y="font" aria-pressed="false" aria-label="Schriftgröße ändern">A</button>
-      <button type="button" data-a11y="contrast" aria-pressed="false" aria-label="Kontrastmodus umschalten">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18" /><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg>
-      </button>
-      <button type="button" data-a11y="motion" aria-pressed="false" aria-label="Bewegungen reduzieren umschalten">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12h8"/></svg>
-      </button>
-      <button type="button" data-a11y="reset" aria-label="Einstellungen zurücksetzen">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
-      </button>
-    </div>
+    <button type="button" data-a11y="contrast" aria-pressed="false" aria-label="Kontrastmodus umschalten">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg>
+    </button>
   </div>
 
   <!-- WhatsApp (unten rechts) -->

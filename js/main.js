@@ -3,13 +3,14 @@
    Vanilla JavaScript, keine Abhängigkeiten.
 
    Module:
-   1. Konfiguration (Formular-Endpoint, WhatsApp)
-   2. Header-Scroll-Zustand
-   3. Drawer-Navigation (Mobile) mit Fokus-Management
-   4. Footer-Accordions (nur Mobile)
-   5. Scroll-Reveals (IntersectionObserver, reduced-motion-aware)
-   6. Kontaktformular (Validierung + Mailto-Fallback)
-   7. Accessibility-Widget (fs-md / fs-lg / hc / reduce-motion, localStorage)
+   1. Konfiguration (Formular, WhatsApp, Social-Profile)
+   2. Social-Icons (Header/Footer, nur konfigurierte Profile)
+   3. Header-Scroll-Zustand
+   4. Drawer-Navigation (Mobile) mit Fokus-Management
+   5. Footer-Accordions (nur Mobile)
+   6. Scroll-Reveals (IntersectionObserver, reduced-motion-aware)
+   7. Kontaktformular (Validierung + Mailto-Fallback)
+   8. Accessibility-Widget (Aa-Stufen + Kontrast, localStorage)
    ========================================================================== */
 
 (function () {
@@ -27,13 +28,62 @@
   // TODO: WhatsApp-Nummer hier zentral pflegen (internationales Format ohne "+").
   var WHATSAPP_NUMBER = "4916092647414";
 
+  // TODO: Social-Profile eintragen, sobald die Links feststehen.
+  // Nur ausgefüllte Profile werden im Header/Footer angezeigt –
+  // leere Einträge bleiben unsichtbar (keine toten Links).
+  var SOCIAL_LINKS = {
+    instagram: "",
+    tiktok: "",
+    linkedin: "",
+    facebook: ""
+  };
+
   // WhatsApp-Links aus der Konfiguration befüllen
   document.querySelectorAll("[data-wa-link]").forEach(function (el) {
     el.href = "https://wa.me/" + WHATSAPP_NUMBER;
   });
 
   /* ------------------------------------------------------------------
-     2. Header-Scroll-Zustand
+     2. Social-Icons (einheitlicher Inline-SVG-Stil)
+     ------------------------------------------------------------------ */
+
+  var SOCIAL_ICONS = {
+    instagram:
+      '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>',
+    tiktok:
+      '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 11.5a4 4 0 1 0 4 4V4c.6 2.6 2.6 4.6 5 5"/></svg>',
+    linkedin:
+      '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10.5V17M8 7.5v.01M12 17v-3.5a2.2 2.2 0 0 1 4.4 0V17"/></svg>',
+    facebook:
+      '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 8.5h2.5V5h-2.5A3.5 3.5 0 0 0 11 8.5V11H8.5v3.5H11V21h3.5v-6.5h2.5l.5-3.5h-3v-2a.9.9 0 0 1 1-1z"/></svg>'
+  };
+
+  var SOCIAL_LABELS = {
+    instagram: "EKY Media auf Instagram",
+    tiktok: "EKY Media auf TikTok",
+    linkedin: "EKY Media auf LinkedIn",
+    facebook: "EKY Media auf Facebook"
+  };
+
+  document.querySelectorAll("[data-socials]").forEach(function (container) {
+    var any = false;
+    Object.keys(SOCIAL_LINKS).forEach(function (key) {
+      var url = SOCIAL_LINKS[key];
+      if (!url) return;
+      any = true;
+      var a = document.createElement("a");
+      a.href = url;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.setAttribute("aria-label", SOCIAL_LABELS[key]);
+      a.innerHTML = SOCIAL_ICONS[key];
+      container.appendChild(a);
+    });
+    container.hidden = !any;
+  });
+
+  /* ------------------------------------------------------------------
+     3. Header-Scroll-Zustand
      ------------------------------------------------------------------ */
 
   var header = document.querySelector(".site-header");
@@ -47,7 +97,7 @@
   updateHeader();
 
   /* ------------------------------------------------------------------
-     3. Drawer-Navigation (Mobile)
+     4. Drawer-Navigation (Mobile)
      ------------------------------------------------------------------ */
 
   var navToggle = document.querySelector(".nav-toggle");
@@ -69,10 +119,8 @@
 
     if (open) {
       lastFocused = document.activeElement;
-      // Fokus in den Drawer setzen
       if (drawerClose) drawerClose.focus();
     } else if (lastFocused && typeof lastFocused.focus === "function") {
-      // Fokus darf nicht im (versteckten) Drawer hängen bleiben
       lastFocused.focus();
       lastFocused = null;
     }
@@ -95,17 +143,15 @@
       });
     }
 
-    // Klick auf einen Link schließt den Drawer
     drawer.addEventListener("click", function (event) {
       if (event.target && event.target.closest("a")) setDrawer(false);
     });
 
-    // Escape schließt den Drawer
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape" && drawerOpen()) setDrawer(false);
     });
 
-    // Einfacher Fokus-Zirkel innerhalb des offenen Drawers
+    // Fokus-Zirkel innerhalb des offenen Drawers
     drawer.addEventListener("keydown", function (event) {
       if (event.key !== "Tab" || !drawerOpen()) return;
       var focusables = drawer.querySelectorAll(
@@ -123,7 +169,6 @@
       }
     });
 
-    // Bei Wechsel auf Desktop-Layout Drawer schließen
     var mqDesktop = window.matchMedia("(min-width: 921px)");
     var onDesktop = function () {
       if (mqDesktop.matches && drawerOpen()) setDrawer(false);
@@ -133,9 +178,7 @@
   }
 
   /* ------------------------------------------------------------------
-     4. Footer-Accordions
-     Desktop: alle Spalten offen, Summary nicht klickbar (CSS).
-     Mobile: Spalten eingeklappt und per Summary toggelbar.
+     5. Footer-Accordions (Desktop offen, Mobile toggelbar)
      ------------------------------------------------------------------ */
 
   var footerCols = document.querySelectorAll("details.footer-col");
@@ -158,7 +201,7 @@
   }
 
   /* ------------------------------------------------------------------
-     5. Scroll-Reveals
+     6. Scroll-Reveals
      ------------------------------------------------------------------ */
 
   var prefersReducedMotion = window.matchMedia(
@@ -198,8 +241,7 @@
   }
 
   /* ------------------------------------------------------------------
-     6. Kontaktformular
-     Solange FORM_ENDPOINT leer ist: Validierung + Mailto-Fallback.
+     7. Kontaktformular
      ------------------------------------------------------------------ */
 
   var form = document.getElementById("contact-form");
@@ -341,10 +383,14 @@
   }
 
   /* ------------------------------------------------------------------
-     7. Accessibility-Widget
+     8. Accessibility-Widget
+     Reduzierte Pille unten links mit zwei Buttons:
+     - "Aa": Schriftgröße Standard → größer (fs-md) → sehr groß (fs-lg)
+     - Kontrast: Kontrastmodus (hc) an/aus
      Klassen am <html>: fs-md, fs-lg, hc, reduce-motion.
-     Einstellungen in localStorage ("eky-a11y"); werden zusätzlich
-     bereits im <head> der Seiten angewendet (kein Flackern).
+     reduce-motion wird intern weiter unterstützt (Systemeinstellung
+     prefers-reduced-motion + ggf. gespeicherter Wert), hat aber bewusst
+     keinen sichtbaren Button mehr.
      ------------------------------------------------------------------ */
 
   var STORAGE_KEY = "eky-a11y";
@@ -376,95 +422,46 @@
   var a11ySettings = readSettings();
   applySettings(a11ySettings);
 
-  var widget = document.querySelector(".a11y-widget");
+  var btnFont = document.querySelector("[data-a11y='font']");
+  var btnContrast = document.querySelector("[data-a11y='contrast']");
 
-  if (widget) {
-    var toggle = widget.querySelector(".a11y-widget__toggle");
-    var panel = widget.querySelector(".a11y-widget__panel");
-    var btnFont = widget.querySelector("[data-a11y='font']");
-    var btnContrast = widget.querySelector("[data-a11y='contrast']");
-    var btnMotion = widget.querySelector("[data-a11y='motion']");
-    var btnReset = widget.querySelector("[data-a11y='reset']");
+  var FONT_LABELS = [
+    "Schriftgröße ändern (aktuell: Standard)",
+    "Schriftgröße ändern (aktuell: größer)",
+    "Schriftgröße ändern (aktuell: sehr groß)"
+  ];
 
-    var FONT_LABELS = [
-      "Schriftgröße: normal",
-      "Schriftgröße: größer",
-      "Schriftgröße: sehr groß"
-    ];
-
-    function syncButtons() {
-      var fs = a11ySettings.fs || 0;
-      if (btnFont) {
-        btnFont.setAttribute("aria-pressed", fs > 0 ? "true" : "false");
-        btnFont.setAttribute("aria-label", FONT_LABELS[fs] + " – ändern");
-        btnFont.textContent = fs === 2 ? "A++" : fs === 1 ? "A+" : "A";
-      }
-      if (btnContrast) {
-        btnContrast.setAttribute("aria-pressed", a11ySettings.hc ? "true" : "false");
-      }
-      if (btnMotion) {
-        btnMotion.setAttribute("aria-pressed", a11ySettings.rm ? "true" : "false");
-      }
-    }
-
-    function update() {
-      applySettings(a11ySettings);
-      writeSettings(a11ySettings);
-      syncButtons();
-    }
-
-    if (toggle && panel) {
-      toggle.addEventListener("click", function () {
-        var open = panel.hidden;
-        panel.hidden = !open;
-        toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      });
-
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape" && !panel.hidden) {
-          panel.hidden = true;
-          toggle.setAttribute("aria-expanded", "false");
-          toggle.focus();
-        }
-      });
-
-      document.addEventListener("click", function (event) {
-        if (!panel.hidden && !widget.contains(event.target)) {
-          panel.hidden = true;
-          toggle.setAttribute("aria-expanded", "false");
-        }
-      });
-    }
-
+  function syncWidget() {
+    var fs = a11ySettings.fs || 0;
     if (btnFont) {
-      btnFont.addEventListener("click", function () {
-        // Drei Stufen: normal → größer (fs-md) → sehr groß (fs-lg) → normal
-        a11ySettings.fs = ((a11ySettings.fs || 0) + 1) % 3;
-        update();
-      });
+      btnFont.setAttribute("aria-pressed", fs > 0 ? "true" : "false");
+      btnFont.setAttribute("aria-label", FONT_LABELS[fs]);
+      btnFont.setAttribute("data-level", String(fs));
     }
-
     if (btnContrast) {
-      btnContrast.addEventListener("click", function () {
-        a11ySettings.hc = !a11ySettings.hc;
-        update();
-      });
+      btnContrast.setAttribute("aria-pressed", a11ySettings.hc ? "true" : "false");
     }
-
-    if (btnMotion) {
-      btnMotion.addEventListener("click", function () {
-        a11ySettings.rm = !a11ySettings.rm;
-        update();
-      });
-    }
-
-    if (btnReset) {
-      btnReset.addEventListener("click", function () {
-        a11ySettings = {};
-        update();
-      });
-    }
-
-    syncButtons();
   }
+
+  function updateWidget() {
+    applySettings(a11ySettings);
+    writeSettings(a11ySettings);
+    syncWidget();
+  }
+
+  if (btnFont) {
+    btnFont.addEventListener("click", function () {
+      a11ySettings.fs = ((a11ySettings.fs || 0) + 1) % 3;
+      updateWidget();
+    });
+  }
+
+  if (btnContrast) {
+    btnContrast.addEventListener("click", function () {
+      a11ySettings.hc = !a11ySettings.hc;
+      updateWidget();
+    });
+  }
+
+  syncWidget();
 })();

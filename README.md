@@ -41,16 +41,12 @@ Statische Website für **EKY Media**, Web- & KI-Agentur in Würzburg & Regensbur
 
 ## Accessibility-Widget
 
-Unten links, `role="toolbar"`, Einstellungen in `localStorage` (`eky-a11y`), Anwendung vor dem ersten Paint (Inline-Skript im `<head>` jeder Seite):
+Fixierte Navy-Pille unten links (`role="toolbar"`, `aria-label="Barrierefreiheit"`) mit zwei runden Buttons:
 
-| Funktion | CSS-Klasse am `<html>` |
-|---|---|
-| Schriftgröße größer | `fs-md` (18px) |
-| Schriftgröße sehr groß | `fs-lg` (20px) |
-| Kontrastmodus | `hc` |
-| Bewegungen reduzieren | `reduce-motion` |
+- **„Aa“** schaltet die Schriftgröße durch: Standard → größer (`html.fs-md`, 18px) → sehr groß (`html.fs-lg`, 20px, zusätzlich Goldring am Button) → Standard
+- **Kontrast-Icon** schaltet den Kontrastmodus (`html.hc`) an/aus
 
-`prefers-reduced-motion` des Systems wird zusätzlich immer respektiert.
+Aktive Zustände sind gold hinterlegt. Einstellungen liegen in `localStorage` (`eky-a11y`) und werden per Inline-Skript im `<head>` jeder Seite vor dem ersten Paint angewendet (kein Flackern). `reduce-motion` wird intern weiter unterstützt (Systemeinstellung `prefers-reduced-motion` wird immer respektiert; ein gespeicherter Wert greift weiterhin), hat aber bewusst keinen sichtbaren Button mehr.
 
 ## Wo ändere ich was?
 
@@ -70,7 +66,7 @@ Unten links, `role="toolbar"`, Einstellungen in `localStorage` (`eky-a11y`), Anw
 
 ### Social-Media-Links
 
-- Im Footer von `index.html` als **auskommentierter Block** vorbereitet (Instagram, TikTok, LinkedIn) – öffentlich ist nichts Leeres sichtbar. Links eintragen und Kommentar entfernen.
+- Zentral in `js/main.js`, Objekt **`SOCIAL_LINKS`** (Instagram, TikTok, LinkedIn, Facebook). Nur ausgefüllte Profile werden als Icons im Header und Footer angezeigt (`[data-socials]`-Container) – leere Einträge bleiben unsichtbar, es gibt keine toten Links.
 
 ### Calendly
 
